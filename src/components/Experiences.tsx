@@ -69,7 +69,7 @@ const experiences = [
 
 const Experiences = () => {
     return (
-        <div id="Experiences">
+        <div id="Skills">
             <Title title="Expériences" />
             <div className="flex  flex-col-reverse md:flex-row justify-center items-center">
                 <div className="flex flex-wrap gap-4  justify-center items-center md:w-1/3 mt-4 md:mt-0">
