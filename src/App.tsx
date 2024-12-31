@@ -1,6 +1,9 @@
 import Navbar from "./components/Navbar"
 import Home from "./components/Home"
 import About from "./components/About"
+import Experiences from "./components/Experiences"
+import Projects from "./components/Projects"
+
 
 export default function App() {
   return (
@@ -11,6 +14,11 @@ export default function App() {
       </div>
       <div className="">
         <About />
+      </div>
+      <div className="p-5 md:px-[15%]">
+        <Experiences />
+        <Projects />
+        
       </div>
     </div>
   )
