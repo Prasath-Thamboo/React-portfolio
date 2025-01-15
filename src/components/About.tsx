@@ -1,6 +1,6 @@
 import Title from "./Title"
 import img from '../assets/img.jpg'
-import { CalendarSync, LetterText, Paintbrush } from "lucide-react";
+import { CalendarSync, LetterText, Paintbrush, Video } from "lucide-react";
 
 const aboutSections = [
     {
@@ -20,6 +20,12 @@ const aboutSections = [
         title: "Passionné par l'UI/UX",
         description: "Créer des interfaces utilisateur attrayantes et fonctionnelles est ma priorité.",
         icon: <Paintbrush className="text-accent scale-150" />,
+    },
+    {
+        id: 4,
+        title: "Adore le montage vidéo et photo",
+        description: "Transformer des contenues photos ou vidéos pour la promotion sur les réseaux sociaux",
+        icon: <Video className="text-accent scale-150" />, 
     },
 ];
 
