@@ -11,8 +11,8 @@ import imgTAILWIND from "../assets/techno/tailwind.png";
 import imgPRISMA from "../assets/techno/prisma.webp";
 
 import google from "../assets/companies/google.png";
-import meta from "../assets/companies/meta.webp";
-import amazon from "../assets/companies/amazon.png";
+import meta from "../assets/companies/meta.jpg";
+import amazon from "../assets/companies/amazon.jpg";
 
 
 
