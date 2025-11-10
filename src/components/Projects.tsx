@@ -6,6 +6,8 @@ import img3 from '../assets/projects/3.png';
 import img4 from '../assets/projects/4.png';
 import img5 from '../assets/projects/5.png';
 import img6 from '../assets/projects/6.png';
+import img7 from '../assets/projects/7.png';
+import img8 from '../assets/projects/8.png';
 import { Github, Video } from "lucide-react";
 
 
@@ -64,6 +66,24 @@ const projects = [
         repoLink: '#',
         image: img6,
     },
+    {
+        id: 7,
+        title: 'Batchily, site vitrine',
+        description: 'Vous trouverez ici le site officiel de Batchily, le chorégraphe rénommé pour ses danses modernes et mouvementées.',
+        technologies: ['HTML', 'CSS', 'Javascript'],
+        demoLink: 'https://batchily.com/',
+        repoLink: 'https://github.com/Prasath-Thamboo/batchily2.git',
+        image: img7,
+    }, 
+    {
+        id: 8,
+        title: 'Counter instagram, application web',
+        description: 'Counter Instagram est une application web qui vous permet de suivre et d\'analyser votre compte Instagram de manière simple et efficace.',
+        technologies: ['HTML', 'CSS', 'Javascript'],
+        demoLink: 'https://counter-inst.com',
+        repoLink: 'https://github.com/Prasath-Thamboo/app-insta-upgrade-frontend.git',
+        image: img8,
+    }
 ];
 
 const Projects = () => {
