@@ -1,27 +1,39 @@
+import { ThemeProvider } from "./context/ThemeProvider"
+import ErrorBoundary from "./components/ErrorBoundary"
+import ScrollProgress from "./components/common/ScrollProgress"
+import CursorGlow from "./components/common/CursorGlow"
 import Navbar from "./components/Navbar"
-import Home from "./components/Home"
+import ChapterNav from "./components/ChapterNav"
+import Hero from "./components/Hero"
 import About from "./components/About"
-import Experiences from "./components/Experiences"
+import Experience from "./components/Experience"
+import Skills from "./components/Skills"
 import Projects from "./components/Projects"
+import Education from "./components/Education"
+import Contact from "./components/Contact"
 import Footer from "./components/Footer"
-
 
 export default function App() {
   return (
-    <div>
-      <div className="p-5 md:px-[15%]">
-        <Navbar/>
-        <Home/>
-      </div>
-      <div>
-        <About />
-      </div>
-      <div className="p-5 md:px-[15%]">
-        <Experiences />
-        <Projects />
-        
-      </div>
-      <Footer />
-    </div>
+    <ErrorBoundary>
+      <ThemeProvider>
+        <div className="relative min-h-screen bg-base-100 text-base-content font-sans overflow-x-hidden">
+          <ScrollProgress />
+          <CursorGlow />
+          <Navbar />
+          <ChapterNav />
+          <main className="relative z-10">
+            <Hero />
+            <About />
+            <Experience />
+            <Skills />
+            <Projects />
+            <Education />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </ErrorBoundary>
   )
 }
