@@ -2,7 +2,7 @@ import { motion, type Variants } from "framer-motion"
 import { Mail, LinkedinIcon, MapPin, Globe, ArrowDown } from "lucide-react"
 import { profile } from "../data/profile"
 import img from "../assets/img.png"
-import NetworkBackground from "./common/NetworkBackground"
+import ProtectedImage from "./common/ProtectedImage"
 
 const orbitBadges = [
     { label: "Terraform", position: "top-[6%] -left-6 md:-left-10" },
@@ -27,9 +27,6 @@ const Hero = () => {
             id="home"
             className="relative overflow-hidden px-5 md:px-[8%] lg:px-[12%] pt-32 md:pt-40 pb-24 md:pb-32 min-h-screen flex items-center scroll-mt-16"
         >
-            <div className="absolute inset-0 -z-20">
-                <NetworkBackground />
-            </div>
             <div
                 aria-hidden="true"
                 className="pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black,transparent)] bg-base-100/40"
@@ -120,10 +117,11 @@ const Hero = () => {
                             <span className="ml-3 font-mono text-[11px] opacity-50 truncate">~/t — zsh</span>
                         </div>
                         <div className="p-1.5">
-                            <img
+                            <ProtectedImage
                                 src={img}
                                 alt="Photo de profil"
-                                className="w-full h-72 md:h-80 object-cover rounded-lg"
+                                watermarkText={`${profile.name} · portfolio`}
+                                className="w-full h-72 md:h-80 rounded-lg overflow-hidden"
                             />
                         </div>
                         <div className="px-4 py-2.5 border-t border-base-content/10 font-mono text-[11px] text-secondary flex items-center gap-1.5">

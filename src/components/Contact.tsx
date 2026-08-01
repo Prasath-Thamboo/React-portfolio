@@ -3,7 +3,6 @@ import { Mail, LinkedinIcon, Send, Languages } from "lucide-react"
 import Title from "./Title"
 import Reveal from "./common/Reveal"
 import GlassCard from "./common/GlassCard"
-import NetworkBackground from "./common/NetworkBackground"
 import RadialGauge from "./common/RadialGauge"
 import { profile } from "../data/profile"
 
@@ -37,10 +36,6 @@ const Contact = () => {
 
     return (
         <section id="contact" className="relative py-20 md:py-24 px-5 md:px-[8%] lg:px-[12%] scroll-mt-24 overflow-hidden">
-            <div className="absolute inset-0 -z-10 opacity-40">
-                <NetworkBackground density={0.00005} maxDistance={120} />
-            </div>
-
             <Title title="Contact" />
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">

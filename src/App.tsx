@@ -2,6 +2,7 @@ import { ThemeProvider } from "./context/ThemeProvider"
 import ErrorBoundary from "./components/ErrorBoundary"
 import ScrollProgress from "./components/common/ScrollProgress"
 import CursorGlow from "./components/common/CursorGlow"
+import NetworkBackground from "./components/common/NetworkBackground"
 import Navbar from "./components/Navbar"
 import ChapterNav from "./components/ChapterNav"
 import Hero from "./components/Hero"
@@ -18,6 +19,9 @@ export default function App() {
     <ErrorBoundary>
       <ThemeProvider>
         <div className="relative min-h-screen bg-base-100 text-base-content font-sans overflow-x-hidden">
+          <div className="fixed inset-0 -z-10" aria-hidden="true">
+            <NetworkBackground density={0.00006} maxDistance={140} />
+          </div>
           <ScrollProgress />
           <CursorGlow />
           <Navbar />
