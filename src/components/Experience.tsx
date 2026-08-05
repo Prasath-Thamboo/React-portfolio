@@ -4,6 +4,8 @@ import Title from "./Title"
 import Reveal from "./common/Reveal"
 import GlassCard from "./common/GlassCard"
 import { experiences } from "../data/experience"
+import { useLanguage } from "../hooks/useLanguage"
+import { ui } from "../data/ui"
 
 const iconMap: Record<string, LucideIcon> = {
     Server,
@@ -12,13 +14,16 @@ const iconMap: Record<string, LucideIcon> = {
 }
 
 const Experience = () => {
+    const { lang } = useLanguage()
+    const t = ui[lang]
+
     return (
         <section id="experience" className="relative py-20 md:py-24 px-5 md:px-[8%] lg:px-[12%] scroll-mt-24 overflow-hidden">
             <div
                 aria-hidden="true"
                 className="pointer-events-none absolute top-0 -right-20 -z-10 w-80 h-80 rounded-full bg-accent/10 blur-3xl"
             />
-            <Title title="Expérience professionnelle" />
+            <Title title={t.sections.experience} />
 
             <div className="relative max-w-3xl mx-auto pl-9 md:pl-12">
                 <div className="absolute left-[7px] md:left-[9px] top-2 bottom-2 w-px bg-base-content/10 overflow-hidden">
@@ -32,7 +37,7 @@ const Experience = () => {
                     />
                 </div>
 
-                {experiences.map((exp, i) => {
+                {experiences[lang].map((exp, i) => {
                     const Icon = iconMap[exp.icon]
                     return (
                         <Reveal key={exp.id} delay={i * 80} className="relative mb-10 last:mb-0">
@@ -50,7 +55,7 @@ const Experience = () => {
                                         <div className="flex flex-wrap items-center gap-x-2 gap-y-1 mt-1">
                                             <span className="text-sm font-semibold text-accent">{exp.company}</span>
                                             {exp.current && (
-                                                <span className="badge badge-secondary badge-sm font-mono">En poste</span>
+                                                <span className="badge badge-secondary badge-sm font-mono">{t.experience.current}</span>
                                             )}
                                             <span className="text-xs opacity-40">·</span>
                                             <span className="text-xs font-mono opacity-60">{exp.period}</span>

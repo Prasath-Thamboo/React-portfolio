@@ -4,22 +4,26 @@ import Title from "./Title"
 import Reveal from "./common/Reveal"
 import GlassCard from "./common/GlassCard"
 import { projects } from "../data/projects"
+import { useLanguage } from "../hooks/useLanguage"
+import { ui } from "../data/ui"
 
 const Projects = () => {
+    const { lang } = useLanguage()
+    const t = ui[lang]
+
     return (
         <section id="projects" className="relative py-20 md:py-24 px-5 md:px-[8%] lg:px-[12%] scroll-mt-24">
-            <Title title="Projets" />
+            <Title title={t.sections.projects} />
 
             <Reveal className="max-w-2xl mx-auto mb-10">
                 <div className="flex items-center gap-3 rounded-2xl border border-warning/30 bg-warning/10 backdrop-blur-xl px-5 py-4 text-sm opacity-80">
                     <Construction className="w-5 h-5 text-warning shrink-0" />
-                    Cette section sera complétée prochainement avec des projets détaillés (infrastructure, CI/CD,
-                    automatisation).
+                    {t.projects.notice}
                 </div>
             </Reveal>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                {projects.map((project, i) =>
+                {projects[lang].map((project, i) =>
                     project.image ? (
                         <Reveal key={project.id} delay={i * 80}>
                             <GlassCard className="h-full flex flex-col overflow-hidden">
@@ -50,7 +54,7 @@ const Projects = () => {
                                             rel="noopener noreferrer"
                                             className="btn btn-accent btn-sm rounded-full gap-2 mt-1 self-start"
                                         >
-                                            Voir le projet
+                                            {t.projects.viewProject}
                                             <ExternalLink className="w-3.5 h-3.5" />
                                         </a>
                                     )}
@@ -72,7 +76,7 @@ const Projects = () => {
                                 </div>
                                 <h3 className="font-semibold text-sm opacity-70">{project.title}</h3>
                                 <p className="text-xs opacity-45">{project.description}</p>
-                                <span className="badge badge-outline badge-sm font-mono">À compléter</span>
+                                <span className="badge badge-outline badge-sm font-mono">{t.projects.toComplete}</span>
                             </div>
                         </Reveal>
                     )

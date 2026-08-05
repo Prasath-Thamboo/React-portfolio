@@ -1,6 +1,8 @@
 import { motion, type Variants } from "framer-motion"
-import { Mail, LinkedinIcon, MapPin, Globe, ArrowDown } from "lucide-react"
+import { Mail, LinkedinIcon, Github, Download, MapPin, Globe, ArrowDown } from "lucide-react"
 import { profile } from "../data/profile"
+import { useLanguage } from "../hooks/useLanguage"
+import { ui } from "../data/ui"
 import img from "../assets/img.png"
 import ProtectedImage from "./common/ProtectedImage"
 
@@ -22,6 +24,10 @@ const item: Variants = {
 }
 
 const Hero = () => {
+    const { lang } = useLanguage()
+    const p = profile[lang]
+    const t = ui[lang]
+
     return (
         <section
             id="home"
@@ -48,19 +54,19 @@ const Hero = () => {
             >
                 <div className="flex flex-col items-center md:items-start text-center md:text-left">
                     <motion.p variants={item} className="font-mono text-sm text-accent mb-3">
-                        $ whoami
+                        {t.hero.whoami}
                     </motion.p>
                     <motion.h1 variants={item} className="text-4xl md:text-6xl font-extrabold leading-tight">
-                        {profile.name}
+                        {p.name}
                     </motion.h1>
                     <motion.p
                         variants={item}
                         className="mt-3 text-xl md:text-2xl font-semibold bg-gradient-to-r from-accent via-secondary to-accent bg-size-200 bg-clip-text text-transparent animate-gradient-x"
                     >
-                        {profile.role}
+                        {p.role}
                     </motion.p>
                     <motion.p variants={item} className="mt-4 text-sm md:text-base opacity-65 leading-relaxed max-w-md">
-                        {profile.tagline}
+                        {p.tagline}
                     </motion.p>
 
                     <motion.div
@@ -69,27 +75,40 @@ const Hero = () => {
                     >
                         <span className="flex items-center gap-1.5">
                             <MapPin className="w-4 h-4 text-accent" />
-                            {profile.location}
+                            {p.location}
                         </span>
                         <span className="flex items-center gap-1.5">
                             <Globe className="w-4 h-4 text-accent" />
-                            {profile.mobility}
+                            {p.mobility}
                         </span>
                     </motion.div>
 
                     <motion.div variants={item} className="flex flex-wrap gap-3 items-center justify-center md:justify-start mt-7">
                         <a href="#contact" className="btn btn-accent rounded-full gap-2 px-6">
                             <Mail className="w-4 h-4" />
-                            Me contacter
+                            {t.hero.contactCta}
+                        </a>
+                        <a href="/CV.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary rounded-full gap-2 px-6">
+                            <Download className="w-4 h-4" />
+                            {t.hero.downloadCv}
                         </a>
                         <a
-                            href={profile.linkedin}
+                            href={p.linkedin}
                             target="_blank"
                             rel="noopener noreferrer"
                             className="btn btn-outline rounded-full gap-2 px-6"
                         >
                             <LinkedinIcon className="w-4 h-4" />
-                            LinkedIn
+                            {t.hero.linkedin}
+                        </a>
+                        <a
+                            href={p.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="btn btn-outline rounded-full gap-2 px-6"
+                        >
+                            <Github className="w-4 h-4" />
+                            {t.hero.github}
                         </a>
                     </motion.div>
                 </div>
@@ -119,14 +138,14 @@ const Hero = () => {
                         <div className="p-1.5">
                             <ProtectedImage
                                 src={img}
-                                alt="Photo de profil"
-                                watermarkText={`${profile.name} · portfolio`}
+                                alt={t.hero.photoAlt}
+                                watermarkText={`${p.name} · portfolio`}
                                 className="w-full h-72 md:h-80 rounded-lg overflow-hidden"
                             />
                         </div>
                         <div className="px-4 py-2.5 border-t border-base-content/10 font-mono text-[11px] text-secondary flex items-center gap-1.5">
                             <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                            status: disponible pour de nouvelles opportunités
+                            {t.hero.status}
                         </div>
                     </div>
                 </motion.div>
@@ -134,12 +153,12 @@ const Hero = () => {
 
             <motion.a
                 href="#about"
-                aria-label="Défiler vers la section suivante"
+                aria-label={t.hero.scrollNext}
                 className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50 hover:opacity-90 transition-opacity"
                 animate={{ y: [0, 8, 0] }}
                 transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             >
-                <span className="text-[10px] font-mono uppercase tracking-widest">scroll</span>
+                <span className="text-[10px] font-mono uppercase tracking-widest">{t.hero.scroll}</span>
                 <ArrowDown className="w-4 h-4" />
             </motion.a>
         </section>

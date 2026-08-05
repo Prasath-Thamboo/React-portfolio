@@ -1,19 +1,22 @@
 import { useActiveSection } from "../hooks/useActiveSection"
+import { useLanguage } from "../hooks/useLanguage"
 import { CHAPTERS } from "../data/chapters"
-
-const CHAPTER_IDS = CHAPTERS.map((c) => c.id)
+import { ui } from "../data/ui"
 
 const ChapterNav = () => {
-    const active = useActiveSection(CHAPTER_IDS)
+    const { lang } = useLanguage()
+    const chapters = CHAPTERS[lang]
+    const chapterIds = chapters.map((c) => c.id)
+    const active = useActiveSection(chapterIds)
 
     return (
         <>
             {/* Desktop : onglets façon reliure de classeur, ancrés sur le bord droit */}
             <nav
-                aria-label="Navigation par chapitre"
+                aria-label={ui[lang].nav.chapterNav}
                 className="hidden md:flex flex-col gap-2 fixed right-0 top-1/2 -translate-y-1/2 z-40"
             >
-                {CHAPTERS.map((chapter) => {
+                {chapters.map((chapter) => {
                     const isActive = active === chapter.id
                     return (
                         <a
@@ -37,10 +40,10 @@ const ChapterNav = () => {
 
             {/* Mobile : pastilles numérotées compactes sur le bord */}
             <nav
-                aria-label="Navigation par chapitre"
+                aria-label={ui[lang].nav.chapterNav}
                 className="md:hidden flex flex-col gap-2 fixed right-2 top-1/2 -translate-y-1/2 z-40"
             >
-                {CHAPTERS.map((chapter) => {
+                {chapters.map((chapter) => {
                     const isActive = active === chapter.id
                     return (
                         <a

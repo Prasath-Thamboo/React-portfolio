@@ -3,18 +3,23 @@ import Title from "./Title"
 import Reveal from "./common/Reveal"
 import GlassCard from "./common/GlassCard"
 import { education } from "../data/education"
+import { useLanguage } from "../hooks/useLanguage"
+import { ui } from "../data/ui"
 
 const Education = () => {
+    const { lang } = useLanguage()
+    const t = ui[lang]
+
     return (
         <section id="education" className="relative py-20 md:py-24 px-5 md:px-[8%] lg:px-[12%] scroll-mt-24 overflow-hidden">
             <div
                 aria-hidden="true"
                 className="pointer-events-none absolute top-10 -right-20 -z-10 w-72 h-72 rounded-full bg-accent/10 blur-3xl"
             />
-            <Title title="Formations & Certifications" />
+            <Title title={t.sections.education} />
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-4xl mx-auto">
-                {education.map((edu, i) => (
+                {education[lang].map((edu, i) => (
                     <Reveal key={edu.id} delay={i * 60}>
                         <GlassCard className="p-5 h-full">
                             <div className="flex items-start gap-4">

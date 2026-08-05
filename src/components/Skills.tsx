@@ -18,6 +18,8 @@ import Title from "./Title"
 import Reveal from "./common/Reveal"
 import GlassCard from "./common/GlassCard"
 import { skillCategories } from "../data/skills"
+import { useLanguage } from "../hooks/useLanguage"
+import { ui } from "../data/ui"
 
 const iconMap: Record<string, LucideIcon> = {
     Boxes,
@@ -36,16 +38,19 @@ const iconMap: Record<string, LucideIcon> = {
 }
 
 const Skills = () => {
+    const { lang } = useLanguage()
+    const t = ui[lang]
+
     return (
         <section id="skills" className="relative py-20 md:py-24 px-5 md:px-[8%] lg:px-[12%] scroll-mt-24 overflow-hidden">
             <div
                 aria-hidden="true"
                 className="pointer-events-none absolute bottom-0 -left-20 -z-10 w-80 h-80 rounded-full bg-secondary/10 blur-3xl"
             />
-            <Title title="Compétences techniques" />
+            <Title title={t.sections.skills} />
 
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-fr [grid-auto-flow:dense] max-w-5xl mx-auto">
-                {skillCategories.map((cat, i) => {
+                {skillCategories[lang].map((cat, i) => {
                     const Icon = iconMap[cat.icon]
                     const isWide = cat.items.length >= 4
 

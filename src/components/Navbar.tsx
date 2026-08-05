@@ -2,11 +2,15 @@ import { useEffect, useState } from "react"
 import { motion } from "framer-motion"
 import { Sun, Moon, Mail } from "lucide-react"
 import { useTheme } from "../hooks/useTheme"
+import { useLanguage } from "../hooks/useLanguage"
+import { ui } from "../data/ui"
 import LiveClock from "./common/LiveClock"
 
 const Navbar = () => {
     const [scrolled, setScrolled] = useState(false)
     const { theme, toggleTheme } = useTheme()
+    const { lang, toggleLang } = useLanguage()
+    const t = ui[lang]
 
     useEffect(() => {
         const onScroll = () => setScrolled(window.scrollY > 20)
@@ -37,10 +41,17 @@ const Navbar = () => {
                     <span className="hidden sm:block">
                         <LiveClock />
                     </span>
-                    <button onClick={toggleTheme} aria-label="Changer de thème" className="btn btn-ghost btn-square btn-sm">
+                    <button
+                        onClick={toggleLang}
+                        aria-label={t.nav.changeLang}
+                        className="btn btn-ghost btn-sm rounded-full font-mono text-[11px] font-bold px-2.5"
+                    >
+                        {lang === "fr" ? "EN" : "FR"}
+                    </button>
+                    <button onClick={toggleTheme} aria-label={t.nav.changeTheme} className="btn btn-ghost btn-square btn-sm">
                         {theme === "devopsdark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
                     </button>
-                    <a href="#contact" aria-label="Me contacter" className="btn btn-accent btn-square btn-sm rounded-full">
+                    <a href="#contact" aria-label={t.nav.contact} className="btn btn-accent btn-square btn-sm rounded-full">
                         <Mail className="w-4 h-4" />
                     </a>
                 </div>
