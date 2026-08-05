@@ -141,6 +141,7 @@ const Hero = () => {
                                 alt={t.hero.photoAlt}
                                 watermarkText={`${p.name} · portfolio`}
                                 className="w-full h-72 md:h-80 rounded-lg overflow-hidden"
+                                objectPosition="center top"
                             />
                         </div>
                         <div className="px-4 py-2.5 border-t border-base-content/10 font-mono text-[11px] text-secondary flex items-center gap-1.5">

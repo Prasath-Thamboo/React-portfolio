@@ -20,12 +20,12 @@ export const projects: Record<Lang, Project[]> = {
     fr: [
         { id: 1, title: "Navilone", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/1.png", url: "https://www.navilone.com/" },
         { id: 2, title: "Visual and Ko", description: "Description à compléter.", technologies: ["React", "Node.js"], image: "/projects/2.png", url: "https://www.visualandko.com/fr" },
-        { id: 3, title: "Seranya", description: "Description à compléter.", technologies: ["TypeScript", "Next.js", "Prisma", "PostgreSQL"], image: "/projects/3.png", url: "https://..." },
-        { id: 4, title: "TechandCompare", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js", "PHP"], image: "/projects/4.png", url: "https://www.navilone.com/" },
-        { id: 5, title: "Batchily", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/5.png", url: "https://www.navilone.com/" },
-        { id: 6, title: "Serrurier de Proximité", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/6.png", url: "https://www.navilone.com/" },
-        { id: 7, title: "Cyria", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/7.png", url: "https://www.navilone.com/" },
-        { id: 8, title: "Counter-inst", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/8.png", url: "https://www.navilone.com/" },
+        { id: 3, title: "Seranya", description: "Description à compléter.", technologies: ["TypeScript", "Next.js", "Prisma", "PostgreSQL"], image: "/projects/3.png", url: "https://www.seranya-blog.com/" },
+        { id: 4, title: "TechandCompare", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js", "PHP"], image: "/projects/4.png", url: "https://techandcompare.com/" },
+        { id: 5, title: "Batchily", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/5.png", url: "https://batchily.com/" },
+        { id: 6, title: "Serrurier de Proximité", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/6.png", url: "https://serrurier-de-proximite.fr/" },
+        { id: 7, title: "Cyria", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/7.png", url: "https://cyria.net/fr/" },
+        { id: 8, title: "Counter-inst", description: "Présenter les activités de la société Navilone", technologies: ["React", "Node.js"], image: "/projects/8.png", url: "https://counter-inst.com" },
     ],
     en: [
         { id: 1, title: "Navilone", description: "Showcasing Navilone's activities", technologies: ["React", "Node.js"], image: "/projects/1.png", url: "https://www.navilone.com/" },

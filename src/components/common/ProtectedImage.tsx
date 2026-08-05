@@ -5,6 +5,7 @@ interface ProtectedImageProps {
     alt: string
     watermarkText: string
     className?: string
+    objectPosition?: string
 }
 
 /**
@@ -13,7 +14,7 @@ interface ProtectedImageProps {
  * Ne garantit pas une protection absolue (une capture d'écran reste possible) mais
  * dissuade la copie automatisée/casuelle et trace visuellement toute réutilisation.
  */
-const ProtectedImage = ({ src, alt, watermarkText, className = "" }: ProtectedImageProps) => {
+const ProtectedImage = ({ src, alt, watermarkText, className = "", objectPosition = "center" }: ProtectedImageProps) => {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [ready, setReady] = useState(false)
 
@@ -56,6 +57,7 @@ const ProtectedImage = ({ src, alt, watermarkText, className = "" }: ProtectedIm
                 role="img"
                 aria-label={alt}
                 className={`w-full h-full object-cover pointer-events-none transition-opacity duration-300 ${ready ? "opacity-100" : "opacity-0"}`}
+                style={{ objectPosition }}
             />
             <div
                 aria-hidden="true"
