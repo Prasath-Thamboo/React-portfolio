@@ -64,8 +64,7 @@ const Contact = () => {
                                 <LinkedinIcon className="text-accent w-5 h-5" />
                             </div>
                             <div>
-                                <p className="text-xs uppercase tracking-wide opacity-50">LinkedIn</p>
-                                <p className="text-sm font-semibold">{p.name}</p>
+                                <p className="text-xs uppercase tracking-wide opacity-50">Lien vers LinkedIn</p>
                             </div>
                         </GlassCard>
                     </a>
@@ -76,8 +75,7 @@ const Contact = () => {
                                 <Github className="text-accent w-5 h-5" />
                             </div>
                             <div>
-                                <p className="text-xs uppercase tracking-wide opacity-50">GitHub</p>
-                                <p className="text-sm font-semibold">{p.name}</p>
+                                <p className="text-xs uppercase tracking-wide opacity-50">Lien vers GitHub</p>
                             </div>
                         </GlassCard>
                     </a>
