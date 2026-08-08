@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Claude Code / Impeccable local tooling
+.claude/skills/
+.claude/settings.local.json
+.impeccable/*.local.json
+.impeccable/hook.cache.json
