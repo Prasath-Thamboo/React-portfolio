@@ -24,7 +24,7 @@ export const projects: Record<Lang, Project[]> = {
         { id: 5, title: "Batchily", description: "Site vitrine d'un chorégraphe et directeur artistique pour clips musicaux, événements live et projets commerciaux.", technologies: ["React", "Node.js"], image: "/projects/7.png", url: "https://batchily.com/" },
         { id: 6, title: "Serrurier de Proximité", description: "Site vitrine d'un service de dépannage en serrurerie d'urgence en Île-de-France.", technologies: ["React", "Node.js"], image: "/projects/4.png", url: "https://serrurier-de-proximite.fr/" },
         { id: 7, title: "Cyria", description: "Site e-commerce d'une marque de mobilier urbain design.", technologies: ["React", "Node.js"], image: "/projects/6.png", url: "https://cyria.net/fr/" },
-        { id: 8, title: "Counter-inst", description: "Widget de compteur de followers Instagram en temps réel pour vitrines et tableaux de bord.", technologies: ["React", "Node.js"], image: "/projects/8.png", url: "https://counter-inst.com" },
+        { id: 8, title: "Counter-inst", description: "Widget de compteur de followers Instagram en temps réel pour vitrines et tableaux de bord.", technologies: ["React", "Node.js"], image: "/projects/8.png", url: "https://counter-inst.fr" },
     ],
     en: [
         { id: 1, title: "Navilone", description: "Showcasing Navilone's activities", technologies: ["React", "Node.js"], image: "/projects/1.png", url: "https://www.navilone.com/" },
@@ -34,6 +34,6 @@ export const projects: Record<Lang, Project[]> = {
         { id: 5, title: "Batchily", description: "Showcase site for a choreographer and artistic director working on music videos, live events, and commercial projects.", technologies: ["React", "Node.js"], image: "/projects/7.png", url: "https://batchily.com/" },
         { id: 6, title: "Serrurier de Proximité", description: "Showcase site for an emergency locksmith service across Île-de-France.", technologies: ["React", "Node.js"], image: "/projects/4.png", url: "https://serrurier-de-proximite.fr/" },
         { id: 7, title: "Cyria", description: "E-commerce site for a design-led urban furniture brand.", technologies: ["React", "Node.js"], image: "/projects/6.png", url: "https://cyria.net/fr/" },
-        { id: 8, title: "Counter-inst", description: "Real-time Instagram follower counter widget for storefronts and dashboards.", technologies: ["React", "Node.js"], image: "/projects/8.png", url: "https://counter-inst.com" },
+        { id: 8, title: "Counter-inst", description: "Real-time Instagram follower counter widget for storefronts and dashboards.", technologies: ["React", "Node.js"], image: "/projects/8.png", url: "https://counter-inst.fr" },
     ],
 }

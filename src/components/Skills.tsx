@@ -63,9 +63,12 @@ const Skills = () => {
                                     </div>
                                     <h3 className="font-semibold text-sm">{cat.category}</h3>
                                 </div>
-                                <div className="flex flex-wrap gap-1.5">
+                                <div className="flex flex-wrap gap-1.5 min-w-0">
                                     {cat.items.map((item) => (
-                                        <span key={item} className="badge badge-outline badge-sm font-mono text-[11px] py-2.5">
+                                        <span
+                                            key={item}
+                                            className="badge badge-outline badge-sm font-mono text-[11px] h-auto min-h-0 py-1 leading-snug whitespace-normal break-words text-left max-w-full"
+                                        >
                                             {item}
                                         </span>
                                     ))}
