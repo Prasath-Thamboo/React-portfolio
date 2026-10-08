@@ -36,7 +36,12 @@ const Projects = () => {
                                     />
                                 </div>
                                 <div className="p-5 flex flex-col gap-3 flex-1">
-                                    <h3 className="font-bold text-sm">{project.title}</h3>
+                                    <div className="flex items-center justify-between gap-2">
+                                        <h3 className="font-bold text-sm">{project.title}</h3>
+                                        {project.inProgress && (
+                                            <span className="badge badge-warning badge-outline badge-sm font-mono shrink-0">{t.projects.inProgress}</span>
+                                        )}
+                                    </div>
                                     <p className="text-xs opacity-70 flex-1">{project.description}</p>
                                     {project.technologies.length > 0 && (
                                         <div className="flex flex-wrap gap-1.5">
@@ -76,7 +81,11 @@ const Projects = () => {
                                 </div>
                                 <h3 className="font-semibold text-sm opacity-70">{project.title}</h3>
                                 <p className="text-xs opacity-45">{project.description}</p>
-                                <span className="badge badge-outline badge-sm font-mono">{t.projects.toComplete}</span>
+                                {project.inProgress ? (
+                                    <span className="badge badge-warning badge-outline badge-sm font-mono">{t.projects.inProgress}</span>
+                                ) : (
+                                    <span className="badge badge-outline badge-sm font-mono">{t.projects.toComplete}</span>
+                                )}
                             </div>
                         </Reveal>
                     )

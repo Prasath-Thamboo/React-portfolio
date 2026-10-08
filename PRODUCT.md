@@ -43,7 +43,7 @@ The differentiator is the full-stack-to-DevOps trajectory: real, hands-on experi
 ## Evidence on Hand
 
 - Real work history with three named employers (Navilone, Visual&KO, Fydgest), roles, periods, and missions, in both FR and EN (`src/data/experience.ts`).
-- Real project references with live URLs (Navilone, Visual&KO, Seranya, TechandCompare, Batchily, Serrurier de Proximité, Cyria, Counter-inst) in `src/data/projects.ts` — some descriptions still marked as placeholder ("Description à compléter"/"to be completed") and awaiting the user's input; do not invent replacement copy for these.
+- Real project references with live URLs (Navilone, Visual&KO, Seranya, TechandCompare, Batchily, Serrurier de Proximité, Counter-inst, + 2 placeholders) in `src/data/projects.ts` — some descriptions still marked as placeholder ("Description à compléter"/"to be completed") and awaiting the user's input; do not invent replacement copy for these.
 - Company/technology logo assets under `src/assets/companies/` and `src/assets/techno/`.
 - No résumé/CV file or testimonials currently present in the repo — do not fabricate either.
 

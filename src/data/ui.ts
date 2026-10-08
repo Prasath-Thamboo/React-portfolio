@@ -33,6 +33,7 @@ export interface UiStrings {
         notice: string
         viewProject: string
         toComplete: string
+        inProgress: string
     }
     contact: {
         name: string
@@ -83,6 +84,7 @@ export const ui: Record<Lang, UiStrings> = {
                 "Cette section est mise à jour régulièrement. Certains projets présentés sont en cours de développement et peuvent ne pas être complets ou fonctionnels. Veuillez vérifier les liens et les informations avant de les utiliser.",
             viewProject: "Voir le projet",
             toComplete: "À compléter",
+            inProgress: "En cours",
         },
         contact: {
             name: "Nom",
@@ -131,6 +133,7 @@ export const ui: Record<Lang, UiStrings> = {
                 "This section is updated regularly. Some featured projects are still under development and may be incomplete or non-functional. Please check links and details before relying on them.",
             viewProject: "View project",
             toComplete: "To be completed",
+            inProgress: "In progress",
         },
         contact: {
             name: "Name",

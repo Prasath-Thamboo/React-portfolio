@@ -47,6 +47,7 @@ export const profile: Record<Lang, Profile> = {
         mobility: "Mobilité Suisse romande",
         languages: [
             { name: "Français", level: "Natif" },
+            { name: "Tamoul", level: "Natif" },
             { name: "Anglais", level: "C1" },
         ],
         summary:
@@ -92,6 +93,7 @@ export const profile: Record<Lang, Profile> = {
         mobility: "Open to relocation — Swiss Romandy",
         languages: [
             { name: "French", level: "Native" },
+            { name: "Tamil", level: "Native" },
             { name: "English", level: "C1" },
         ],
         summary:
