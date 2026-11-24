@@ -27,6 +27,7 @@ export const projects: Record<Lang, Project[]> = {
         { id: 7, title: "Counter-inst", description: "Widget de compteur de followers Instagram en temps réel pour vitrines et tableaux de bord.", technologies: ["React", "Node.js"], image: "/projects/8.png", url: "https://counter-inst.fr" },
         { id: 8, title: "Fruity Click & Collect", description: "Application web permettant aux utilisateurs de commander et réserver des jus ou des fruits frais. Abonnement récurrent pour ne plus se soucier de la commande.  ", technologies: ["NodeJS", "React", "Tailwind CSS", "Prisma"], image: "/projects/9.png", url: "https://click-collect-fruitier-frontend.vercel.app/"  }, 
         { id: 9, title: "Ader", description: "Plateforme e-commerce complète, avec une attention forte portée à la conformité RGPD / CNIL et à la souveraineté des données (hébergement auto-géré au sein de l'Union européenne).", technologies: ["NextJS", "MedusaJS", "PostgreSQL", "Prisma"], image: "/projects/10.png", url: "https://aderspaces-front.vercel.app/"  },
+        { id: 11, title: "Transport Père et Fils", description: "Site vitrine d'un transporteur routier B2B : lots complets, groupage, express et affrètement partout en France, avec demande de devis en ligne.", technologies: ["Next.js"], image: "/projects/11.png", url: "https://transport-rho-three.vercel.app/" },
         { id: 10, title: "Hal Holiday", description: "Description à compléter", technologies: [], inProgress: true },
     ],
     en: [
@@ -39,6 +40,7 @@ export const projects: Record<Lang, Project[]> = {
         { id: 7, title: "Counter-inst", description: "Real-time Instagram follower counter widget for storefronts and dashboards.", technologies: ["React", "Node.js"], image: "/projects/8.png", url: "https://counter-inst.fr" },
         { id: 8, title: "Fruity Click & Collect", description: "Web application allowing users to order and reserve fresh juices or fruits. Recurring subscription to eliminate the need for manual ordering.", technologies: ["NodeJS", "React", "Tailwind CSS", "Prisma"], image: "/projects/9.png", url: "https://click-collect-fruitier-frontend.vercel.app/"  }, 
         { id: 9, title: "Ader", description: "Complete e-commerce platform with a strong focus on GDPR/CNIL compliance and data sovereignty (self-hosted within the European Union).", technologies: ["NextJS", "MedusaJS", "PostgreSQL", "Prisma"], image: "/projects/10.png", url: "https://aderspaces-front.vercel.app/"  },
+        { id: 11, title: "Transport Père et Fils", description: "Showcase site for a B2B road haulage company: full loads, groupage, express delivery and chartering across France, with online quote requests.", technologies: ["Next.js"], image: "/projects/11.png", url: "https://transport-rho-three.vercel.app/" },
         { id: 10, title: "Hal Holiday", description: "Description to be completed", technologies: [], inProgress: true },
     ],
 }
