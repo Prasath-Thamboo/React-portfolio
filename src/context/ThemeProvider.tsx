@@ -1,12 +1,12 @@
 import { useEffect, useState, type ReactNode } from "react"
 import { ThemeContext, type Theme } from "./theme-context"
 
-const STORAGE_KEY = "portfolio-theme"
+const STORAGE_KEY = "portfolio-theme-v2"
 
 function getInitialTheme(): Theme {
     const stored = window.localStorage.getItem(STORAGE_KEY)
-    if (stored === "devopsdark" || stored === "devopslight") return stored
-    return window.matchMedia("(prefers-color-scheme: light)").matches ? "devopslight" : "devopsdark"
+    if (stored === "quai" || stored === "nuit") return stored
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "nuit" : "quai"
 }
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
@@ -18,7 +18,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }, [theme])
 
     const toggleTheme = () => {
-        setTheme((prev) => (prev === "devopsdark" ? "devopslight" : "devopsdark"))
+        setTheme((prev) => (prev === "quai" ? "nuit" : "quai"))
     }
 
     return <ThemeContext.Provider value={{ theme, toggleTheme }}>{children}</ThemeContext.Provider>

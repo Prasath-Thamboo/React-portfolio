@@ -1,6 +1,6 @@
 import { createContext } from "react"
 
-export type Theme = "devopsdark" | "devopslight"
+export type Theme = "quai" | "nuit"
 
 export interface ThemeContextValue {
     theme: Theme

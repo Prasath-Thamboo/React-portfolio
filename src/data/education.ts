@@ -25,6 +25,13 @@ export const education: Record<Lang, Education[]> = {
             location: "Paris",
         },
         {
+            id: 5,
+            degree: "Mastère — Développeur Full Stack",
+            school: "Cloud Campus",
+            period: "2023–2024",
+            location: "Paris",
+        },
+        {
             id: 3,
             degree: "Bachelor Développeur Full Stack",
             school: "IPSSI",
@@ -52,6 +59,13 @@ export const education: Record<Lang, Education[]> = {
             degree: "Large Systems Developer Training (POEC)",
             school: "AJC",
             period: "2024",
+            location: "Paris",
+        },
+        {
+            id: 5,
+            degree: "Master's Degree — Full Stack Developer",
+            school: "Cloud Campus",
+            period: "2023–2024",
             location: "Paris",
         },
         {

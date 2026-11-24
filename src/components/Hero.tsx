@@ -1,167 +1,210 @@
-import { motion, type Variants } from "framer-motion"
-import { Mail, LinkedinIcon, Github, Download, MapPin, Globe, ArrowDown } from "lucide-react"
+import { useRef } from "react"
+import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion"
+import { Mail, LinkedinIcon, Github, Download, ArrowDown } from "lucide-react"
 import { profile } from "../data/profile"
+import { STATIC_RENDER } from "../lib/motion"
 import { useLanguage } from "../hooks/useLanguage"
 import { ui } from "../data/ui"
 import img from "../assets/img.png"
 import ProtectedImage from "./common/ProtectedImage"
 
-const orbitBadges = [
-    { label: "Terraform", position: "top-[6%] -left-6 md:-left-10" },
-    { label: "CI/CD", position: "top-[38%] -right-8 md:-right-14" },
-    { label: "Ansible", position: "bottom-[10%] -left-8 md:-left-12" },
-    { label: "Kubernetes-ready", position: "bottom-[-4%] right-[8%]" },
-]
+const EASE = [0.22, 1, 0.36, 1] as const
 
-const container: Variants = {
-    hidden: {},
-    show: { transition: { staggerChildren: 0.12, delayChildren: 0.1 } },
-}
+/** Pièce de coin moulée (corner casting) d'un conteneur ISO */
+const CornerCasting = ({ className }: { className: string }) => (
+    <span aria-hidden="true" className={`absolute h-7 w-9 bg-cargo-navy/85 ${className}`}>
+        <span className="absolute inset-x-2 top-1/2 -translate-y-1/2 h-2.5 rounded-full bg-primary/60" />
+    </span>
+)
 
-const item: Variants = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
-}
+/** Barre de verrouillage de porte avec sa poignée */
+const LockRod = ({ className, handleTop }: { className: string; handleTop: string }) => (
+    <span aria-hidden="true" className={`absolute top-0 bottom-0 w-3 bg-gradient-to-r from-cargo-navy/55 via-cargo-navy/30 to-cargo-navy/60 ${className}`}>
+        <span className="absolute -left-1.5 top-[12%] h-5 w-6 bg-cargo-navy/70" />
+        <span className="absolute -left-1.5 bottom-[12%] h-5 w-6 bg-cargo-navy/70" />
+        <span className="absolute left-2 w-12 h-3 bg-cargo-navy/75 origin-left" style={{ top: handleTop }} />
+    </span>
+)
 
 const Hero = () => {
     const { lang } = useLanguage()
     const p = profile[lang]
     const t = ui[lang]
+    const reduce = useReducedMotion() || STATIC_RENDER
+    const ref = useRef<HTMLElement>(null)
+
+    // Le conteneur est hissé par la grue quand on défile
+    const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] })
+    const lift = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : -140])
+    const plateSwing = useTransform(scrollYProgress, [0, 1], [0, reduce ? 0 : 6])
+
+    const name = Array.from(p.name.toUpperCase())
 
     return (
         <section
             id="home"
-            className="relative overflow-hidden px-5 md:px-[8%] lg:px-[12%] pt-32 md:pt-40 pb-24 md:pb-32 min-h-screen flex items-center scroll-mt-16"
+            ref={ref}
+            aria-labelledby="hero-name"
+            className="relative overflow-hidden bg-primary text-cargo-navy min-h-[100svh] pt-16 flex flex-col"
         >
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute inset-0 -z-10 [mask-image:radial-gradient(ellipse_70%_60%_at_50%_30%,black,transparent)] bg-base-100/40"
-            />
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -top-24 right-0 -z-10 w-[28rem] h-[28rem] rounded-full bg-accent/10 blur-3xl"
-            />
-            <div
-                aria-hidden="true"
-                className="pointer-events-none absolute bottom-0 left-0 -z-10 w-[22rem] h-[22rem] rounded-full bg-secondary/10 blur-3xl"
-            />
+            <div aria-hidden="true" className="absolute inset-0 corrugated" />
+            <div aria-hidden="true" className="absolute inset-x-0 top-16 h-5 bg-cargo-navy/20" />
+            <CornerCasting className="top-[4.25rem] left-3" />
+            <CornerCasting className="top-[4.25rem] right-3" />
+            <p aria-hidden="true" className="absolute top-[6.5rem] right-6 md:right-10 lg:right-auto lg:left-44 hidden sm:flex items-center gap-2.5 font-mono font-bold text-xs md:text-sm">
+                <span>TPRU 120526</span>
+                <span className="grid place-items-center h-6 w-6 border-2 border-cargo-navy">3</span>
+                <span>22G1</span>
+            </p>
+            <LockRod className="hidden lg:block left-10" handleTop="52%" />
+            <LockRod className="hidden lg:block left-24" handleTop="58%" />
 
             <motion.div
-                variants={container}
-                initial="hidden"
-                animate="show"
-                className="relative flex flex-col-reverse md:flex-row items-center gap-16 md:gap-8 w-full"
+                style={{ y: lift }}
+                className="relative flex-1 grid lg:grid-cols-[minmax(0,1fr)_minmax(300px,380px)] gap-12 lg:gap-16 items-center px-5 sm:px-8 lg:pl-44 lg:pr-16 xl:pr-24 pt-14 pb-20 lg:py-16 max-w-[1600px] w-full mx-auto"
             >
-                <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                    <motion.p variants={item} className="font-mono text-sm text-accent mb-3">
-                        {t.hero.whoami}
-                    </motion.p>
-                    <motion.h1 variants={item} className="text-4xl md:text-6xl font-extrabold leading-tight">
-                        {p.name}
-                    </motion.h1>
-                    <motion.p
-                        variants={item}
-                        className="mt-3 text-xl md:text-2xl font-semibold bg-gradient-to-r from-accent via-secondary to-accent bg-size-200 bg-clip-text text-transparent animate-gradient-x"
+                <div className="min-w-0 [container-type:inline-size]">
+
+                    <h1
+                        id="hero-name"
+                        aria-label={p.name}
+                        className="stencil font-black text-[min(25cqi,13rem)] -ml-1 flex"
                     >
-                        {p.role}
-                    </motion.p>
-                    <motion.p variants={item} className="mt-4 text-sm md:text-base opacity-65 leading-relaxed max-w-md">
-                        {p.tagline}
-                    </motion.p>
+                        {name.map((char, i) => (
+                            <motion.span
+                                key={`${char}-${i}`}
+                                aria-hidden="true"
+                                initial={reduce ? false : { clipPath: "inset(0 0 100% 0)", filter: "blur(10px)", y: 30 }}
+                                animate={{ clipPath: "inset(0 0 0% 0)", filter: "blur(0px)", y: 0 }}
+                                transition={{ duration: 0.7, ease: EASE, delay: 0.25 + i * 0.06 }}
+                                className="inline-block"
+                            >
+                                {char}
+                            </motion.span>
+                        ))}
+                    </h1>
 
                     <motion.div
-                        variants={item}
-                        className="flex flex-wrap items-center justify-center md:justify-start gap-x-5 gap-y-2 mt-5 text-sm opacity-70"
+                        initial={reduce ? false : { opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.7, ease: EASE, delay: 0.9 }}
                     >
-                        <span className="flex items-center gap-1.5">
-                            <MapPin className="w-4 h-4 text-accent" />
-                            {p.location}
-                        </span>
-                        <span className="flex items-center gap-1.5">
-                            <Globe className="w-4 h-4 text-accent" />
-                            {p.mobility}
-                        </span>
-                    </motion.div>
+                        <p className="font-cond font-bold uppercase text-2xl md:text-4xl tracking-[0.02em] mt-5 leading-tight">
+                            {p.role}
+                        </p>
+                        <p className="mt-3 text-lg md:text-xl font-medium max-w-xl">{p.tagline}</p>
 
-                    <motion.div variants={item} className="flex flex-wrap gap-3 items-center justify-center md:justify-start mt-7">
-                        <a href="#contact" className="btn btn-accent rounded-full gap-2 px-6">
-                            <Mail className="w-4 h-4" />
-                            {t.hero.contactCta}
-                        </a>
-                        <a href="/CV.pdf" target="_blank" rel="noopener noreferrer" className="btn btn-secondary rounded-full gap-2 px-6">
-                            <Download className="w-4 h-4" />
-                            {t.hero.downloadCv}
-                        </a>
-                        <a
-                            href={p.linkedin}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-outline rounded-full gap-2 px-6"
-                        >
-                            <LinkedinIcon className="w-4 h-4" />
-                            {t.hero.linkedin}
-                        </a>
-                        <a
-                            href={p.github}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="btn btn-outline rounded-full gap-2 px-6"
-                        >
-                            <Github className="w-4 h-4" />
-                            {t.hero.github}
-                        </a>
+                        <div className="flex flex-wrap gap-3 mt-9">
+                            <a
+                                href="#contact"
+                                className="group inline-flex items-center gap-2.5 h-14 px-7 bg-cargo-navy text-cargo-concrete font-cond font-bold uppercase tracking-[0.1em] text-base shadow-[0_10px_24px_-10px_rgba(20,33,61,0.7)] hover:-translate-y-0.5 transition-transform duration-300 ease-crane"
+                            >
+                                <Mail className="w-5 h-5" />
+                                {t.hero.contactCta}
+                            </a>
+                            <a
+                                href="/CV.pdf"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-2.5 h-14 px-7 bg-accent text-cargo-navy font-cond font-bold uppercase tracking-[0.1em] text-base hover:-translate-y-0.5 transition-transform duration-300 ease-crane"
+                            >
+                                <Download className="w-5 h-5" />
+                                {t.hero.downloadCv}
+                            </a>
+                            <div className="flex gap-3">
+                            <a
+                                href={p.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={t.hero.linkedin}
+                                className="grid place-items-center h-14 w-14 border-2 border-cargo-navy hover:bg-cargo-navy hover:text-primary transition-colors"
+                            >
+                                <LinkedinIcon className="w-5 h-5" />
+                            </a>
+                            <a
+                                href={p.github}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                aria-label={t.hero.github}
+                                className="grid place-items-center h-14 w-14 border-2 border-cargo-navy hover:bg-cargo-navy hover:text-primary transition-colors"
+                            >
+                                <Github className="w-5 h-5" />
+                            </a>
+                            </div>
+                        </div>
                     </motion.div>
                 </div>
 
-                <motion.div
-                    variants={item}
-                    className="relative shrink-0 w-full max-w-sm"
-                >
-                    {orbitBadges.map((badge, i) => (
-                        <motion.span
-                            key={badge.label}
-                            className={`hidden md:flex absolute ${badge.position} z-20 items-center px-3 py-1.5 rounded-full border border-base-content/10 bg-base-100/70 backdrop-blur-md font-mono text-[11px] shadow-lg`}
-                            animate={{ y: [0, -8, 0] }}
-                            transition={{ duration: 4 + i, repeat: Infinity, ease: "easeInOut", delay: i * 0.4 }}
+                {/* Plaque d'identification suspendue au crochet de la grue */}
+                <div className="relative justify-self-center lg:justify-self-end w-full max-w-[360px] lg:self-start lg:mt-6">
+                    <motion.div
+                        initial={reduce ? false : { y: -420 }}
+                        animate={{ y: 0 }}
+                        transition={{ type: "spring", stiffness: 70, damping: 13, mass: 1.1, delay: 0.35 }}
+                    >
+                        <span aria-hidden="true" className="hidden lg:block absolute left-1/2 -translate-x-1/2 bottom-full h-[60vh] w-[3px] bg-cargo-navy" />
+                        <span aria-hidden="true" className="hidden lg:block absolute left-1/2 -translate-x-1/2 -top-7 h-8 w-8 border-[5px] border-cargo-navy border-t-transparent rounded-full" />
+                        <motion.div style={{ rotate: plateSwing, transformOrigin: "50% -40px" }}>
+                        <motion.div
+                            style={{ transformOrigin: "50% -40px" }}
+                            initial={reduce ? false : { rotate: -7 }}
+                            animate={{ rotate: reduce ? 0 : [-7, 5, -3, 1.5, 0] }}
+                            transition={{ duration: 2.4, ease: "easeOut", delay: 0.9 }}
+                            className="relative bg-base-200 text-base-content shadow-[0_28px_50px_-18px_rgba(20,33,61,0.75)]"
                         >
-                            {badge.label}
-                        </motion.span>
-                    ))}
-
-                    <div className="rounded-2xl overflow-hidden border border-base-content/10 shadow-2xl bg-base-100/60 backdrop-blur-xl">
-                        <div className="flex items-center gap-1.5 px-4 py-2.5 border-b border-base-content/10 bg-base-content/5">
-                            <span className="w-2.5 h-2.5 rounded-full bg-red-500/70" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-yellow-500/70" />
-                            <span className="w-2.5 h-2.5 rounded-full bg-green-500/70" />
-                            <span className="ml-3 font-mono text-[11px] opacity-50 truncate">~/t — zsh</span>
-                        </div>
-                        <div className="p-1.5">
-                            <ProtectedImage
-                                src={img}
-                                alt={t.hero.photoAlt}
-                                watermarkText={`${p.name} · portfolio`}
-                                className="w-full h-72 md:h-80 rounded-lg overflow-hidden"
-                                objectPosition="center top"
-                            />
-                        </div>
-                        <div className="px-4 py-2.5 border-t border-base-content/10 font-mono text-[11px] text-secondary flex items-center gap-1.5">
-                            <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse" />
-                            {t.hero.status}
-                        </div>
-                    </div>
-                </motion.div>
+                            {["top-2 left-2", "top-2 right-2", "bottom-2 left-2", "bottom-2 right-2"].map((pos) => (
+                                <span key={pos} aria-hidden="true" className={`absolute ${pos} h-2.5 w-2.5 rounded-full bg-base-300 shadow-[inset_0_-1px_0_rgba(0,0,0,0.35)]`} />
+                            ))}
+                            <div className="px-6 pt-5 pb-3 flex items-center justify-between border-b-2 border-base-content">
+                                <span className="field-label">{t.hero.plateTitle}</span>
+                                <span className="font-mono text-xs font-bold">CSC</span>
+                            </div>
+                            <div className="p-3">
+                                <ProtectedImage
+                                    src={img}
+                                    alt={t.hero.photoAlt}
+                                    watermarkText={`${p.name} · portfolio`}
+                                    className="w-full aspect-[4/3.4] overflow-hidden bg-base-300 grayscale-[15%] contrast-[1.05]"
+                                    objectPosition="center top"
+                                />
+                            </div>
+                            <dl className="grid grid-cols-2 border-t-2 border-base-content text-sm">
+                                {[
+                                    [t.hero.origin, p.location],
+                                    [t.hero.destination, p.mobility],
+                                    [t.hero.experience, t.hero.experienceValue],
+                                    [t.hero.companies, "3"],
+                                ].map(([label, value], i) => (
+                                    <div
+                                        key={label}
+                                        className={`px-4 py-2.5 ${i % 2 === 0 ? "border-r-2" : ""} ${i < 2 ? "border-b-2" : ""} border-base-content`}
+                                    >
+                                        <dt className="field-label opacity-75">{label}</dt>
+                                        <dd className="font-semibold leading-snug mt-0.5">{value}</dd>
+                                    </div>
+                                ))}
+                            </dl>
+                            <p className="flex items-center gap-2 px-4 py-3 bg-success text-white font-cond font-semibold uppercase tracking-[0.08em] text-sm">
+                                <span className="relative flex h-2.5 w-2.5">
+                                    <span className="absolute inset-0 rounded-full bg-white animate-ping opacity-70" />
+                                    <span className="relative h-2.5 w-2.5 rounded-full bg-white" />
+                                </span>
+                                {t.hero.status}
+                            </p>
+                        </motion.div>
+                        </motion.div>
+                    </motion.div>
+                </div>
             </motion.div>
 
-            <motion.a
+            <div className="relative h-4 hazard" aria-hidden="true" />
+            <a
                 href="#about"
                 aria-label={t.hero.scrollNext}
-                className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1 opacity-50 hover:opacity-90 transition-opacity"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+                className="absolute bottom-8 right-6 md:right-10 grid place-items-center h-12 w-12 bg-cargo-navy text-accent hover:translate-y-1 transition-transform"
             >
-                <span className="text-[10px] font-mono uppercase tracking-widest">{t.hero.scroll}</span>
-                <ArrowDown className="w-4 h-4" />
-            </motion.a>
+                <ArrowDown className="w-5 h-5" />
+            </a>
         </section>
     )
 }

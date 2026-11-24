@@ -11,50 +11,34 @@ const Footer = () => {
     const p = profile[lang]
     const t = ui[lang]
 
-    return (
-        <footer className="relative border-t border-base-content/10 mt-10 pt-8">
-            <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
-                <span className="flex items-center gap-1.5 font-mono font-bold text-sm opacity-70">
-                    <span className="text-accent">~/</span>t
-                </span>
+    const iconLink = "grid place-items-center h-11 w-11 border border-neutral-content/30 hover:border-accent hover:text-accent transition-colors"
 
-                <div className="flex flex-col items-center gap-1">
-                    <p className="text-xs opacity-40 text-center font-mono">
+    return (
+        <footer className="relative bg-neutral text-neutral-content">
+            <div aria-hidden="true" className="h-2 hazard" />
+            <div className="px-5 sm:px-8 lg:px-16 py-10 max-w-6xl mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8">
+                <div>
+                    <p className="stencil font-black uppercase text-6xl md:text-7xl text-primary">{p.name}</p>
+                    <p className="mt-3 text-sm text-neutral-content/75">
                         © {new Date().getFullYear()} {p.name} — {t.footer.madeWith}
                     </p>
                     <button
                         type="button"
                         onClick={() => setLegalOpen(true)}
-                        className="text-xs opacity-40 hover:opacity-70 underline underline-offset-2 transition-opacity"
+                        className="mt-1 text-sm text-neutral-content/75 hover:text-accent underline underline-offset-4 transition-colors"
                     >
                         {t.footer.legal}
                     </button>
                 </div>
 
                 <div className="flex gap-2">
-                    <a
-                        href={`mailto:${p.email}`}
-                        className="btn btn-ghost btn-square btn-sm rounded-full"
-                        aria-label="Email"
-                    >
+                    <a href={`mailto:${p.email}`} className={iconLink} aria-label="Email">
                         <Mail className="w-4 h-4" />
                     </a>
-                    <a
-                        href={p.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-ghost btn-square btn-sm rounded-full"
-                        aria-label="LinkedIn"
-                    >
+                    <a href={p.linkedin} target="_blank" rel="noopener noreferrer" className={iconLink} aria-label="LinkedIn">
                         <LinkedinIcon className="w-4 h-4" />
                     </a>
-                    <a
-                        href={p.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="btn btn-ghost btn-square btn-sm rounded-full"
-                        aria-label="GitHub"
-                    >
+                    <a href={p.github} target="_blank" rel="noopener noreferrer" className={iconLink} aria-label="GitHub">
                         <Github className="w-4 h-4" />
                     </a>
                 </div>
